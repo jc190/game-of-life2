@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import clone from 'lodash/clone';
 import Block from './Block';
 import './App.css';
 
@@ -11,7 +10,7 @@ class App extends Component {
         w: 70,
         h: 50
       },
-      blockSize: 15,
+      blockSize: 12,
       blocks: [],
       gameIsOn: false,
       intervalId: null,
@@ -75,7 +74,6 @@ class App extends Component {
     })
     if (block.isOn === true) {
       if (neighborsAlive.length < 2) return true
-      // if (neighborsAlive.length === 2 || neighborsAlive.length === 3) return true
       if (neighborsAlive.length > 3) return true
       return false
     } else {
@@ -84,7 +82,6 @@ class App extends Component {
     }
   }
   getNeighbors (block, blocks) {
-    // console.log(block.x)
     const neighborCoords = []
     const tl = { x: this.checkX(block.x - 1), y: this.checkY(block.y - 1) }
     const t = { x: this.checkX(block.x), y: this.checkY(block.y - 1) }
@@ -96,7 +93,6 @@ class App extends Component {
     const br = { x: this.checkX(block.x + 1), y: this.checkY(block.y + 1) }
     neighborCoords.push(tl, t, tr, l, r, bl, b, br)
     const neighbors = neighborCoords.map((neighbor) => {
-      // console.log(neighbor.x)
       const filtered = blocks.reduce((acc, b, index) => {
         if (neighbor.x === b.x && neighbor.y === b.y) {
           return index + acc
